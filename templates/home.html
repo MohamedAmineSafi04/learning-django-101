@@ -6,6 +6,7 @@ my title
 {% endblock %}
 
 {% block body %}
+    <a href="{% url 'feed:post' %}">Make A Post</a>
     {% for post in posts %}
         <a href="{% url 'feed:detail' post.id %}"><p>{{post.text}}</p></a>
         <hr>
