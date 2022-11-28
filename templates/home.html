@@ -7,7 +7,7 @@ my title
 
 {% block body %}
     {% for post in posts %}
-        <p>{{post.text}}</p>
+        <a href="{% url 'feed:detail' post.id %}"><p>{{post.text}}</p></a>
         <hr>
         <!-- <img src='{{ post.image.url }}'> -->
         {% thumbnail post.image "100x100" crop="center" as im %}

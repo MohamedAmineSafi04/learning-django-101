@@ -1,5 +1,6 @@
 {% extends "home.html" %}
 
 {% block body %}
+<a href="{% url 'feed:index' %}">Go back</a>
 <img src="{{object.image.url}}">
 {% endblock %}
