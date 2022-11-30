@@ -1,6 +1,9 @@
 {% extends "home.html" %}
 
 {% block body %}
-<a href="{% url 'feed:index' %}">Go back</a>
-<img src="{{object.image.url}}">
+<div class="row">
+    <div class="col-sm-10 offset-sm-1 py-5">
+        <img src="{{object.image.url}}" style="width: 100%;" class="img-fluid rounded">
+    </div>
+</div>
 {% endblock %}

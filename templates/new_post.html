@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 
 {% block body %}
-    <form method="post" action="" enctype="multipart/form-data">
+    <form method="post" action="" enctype="multipart/form-data" class="col-sm-4 offset-4 py-5 my-5">
+        <h1>Add Image</h1>
         {% csrf_token %}
         {{ form.as_ul }}
         <div>
-            <button type="submit">Submit Form</button>
+            <button type="submit" class="btn btn-lg btn-success my-3">Submit Form</button>
         </div>
     </form>
 {% endblock %}
