@@ -6,6 +6,10 @@ from django.contrib import messages
 from .forms import PostForm
 from .models import Post
 
+
+from django.views import View
+from django.http import JsonResponse
+
 class HomePageView(TemplateView):
     template_name = "home.html"
 
@@ -36,3 +40,13 @@ class AddPostView(FormView):
         messages.add_message(self.request, messages.SUCCESS, 'Your post was successful')
         # print(form.cleaned_data['text'])
         return super().form_valid(form)
+
+
+class API(View):
+    def post(self, request):
+        if request.method == 'POST':
+            receivedNumber = int( request.POST['myNumber'] )
+            return JsonResponse({"takeYourNumber": receivedNumber * 2}, safe=False)
+
+class SendAPI(TemplateView):
+    template_name = 'sendapi.html'
