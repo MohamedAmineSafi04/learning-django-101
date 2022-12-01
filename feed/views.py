@@ -10,6 +10,8 @@ from .models import Post
 from django.views import View
 from django.http import JsonResponse
 
+from .funcs import getFullResponse
+
 class HomePageView(TemplateView):
     template_name = "home.html"
 
@@ -46,7 +48,8 @@ class API(View):
     def post(self, request):
         if request.method == 'POST':
             receivedNumber = int( request.POST['myNumber'] )
-            return JsonResponse({"takeYourNumber": receivedNumber * 2}, safe=False)
+            receivedNumber = getFullResponse(receivedNumber * 2)
+            return JsonResponse({"takeYourNumber": receivedNumber}, safe=False)
 
 class SendAPI(TemplateView):
     template_name = 'sendapi.html'
