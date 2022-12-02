@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView, DetailView, FormView
 from django.contrib import messages
 from .forms import PostForm
-from .models import Post
+from .models import Post, MyUser
 
 class HomePageView(TemplateView):
     template_name = "home.html"
@@ -42,6 +42,13 @@ class RenderUser(TemplateView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
         username = self.kwargs['username']
-        context['data'] = username
-        return context
+        try:
+            row = MyUser.objects.get(name=username)
+            age = row.age
+            context['data'] = age
+            return context
+        except:
+            context['data'] = "This user does not exist"
+            return context
