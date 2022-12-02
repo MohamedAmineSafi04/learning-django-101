@@ -1,4 +1,4 @@
-# from django.shortcuts import render
+from django.shortcuts import render
 
 # Create your views here.
 from django.views.generic import TemplateView, DetailView, FormView
@@ -36,3 +36,12 @@ class AddPostView(FormView):
         messages.add_message(self.request, messages.SUCCESS, 'Your post was successful')
         # print(form.cleaned_data['text'])
         return super().form_valid(form)
+
+class RenderUser(TemplateView):
+    template_name = 'user.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        username = self.kwargs['username']
+        context['data'] = username
+        return context
